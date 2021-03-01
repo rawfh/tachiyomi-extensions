@@ -23,6 +23,9 @@ abstract class MangaRaw(
         .protocols(listOf(Protocol.HTTP_1_1))
         .build()
 
+    override fun headersBuilder() = super.headersBuilder()
+        .add("Referer", baseUrl)
+
     override fun popularMangaRequest(page: Int) = GET("$baseUrl/seachlist/page/$page/?cat=-1", headers)
 
     override fun popularMangaSelector() = "article"
